@@ -8,7 +8,7 @@ This task is intended for candidates applying for a Frontend Engineer position a
 ## The problem
 Imagine you're building an Annotation tool for a Machine Learning project. Annotation tool is a crucial part of the Machine Learning pipeline, as it allows to create labeled datasets for training the models. The goal of the tool is to allow users to annotate certain fields in the documents and save the annotations into a JSON file. This data is then used to train the models, but this will not be a part of this task.
 
-Your goal is to create the Annotation tool itself. The tool should allow users to upload images or PDF files of invoices and receipts, and provide them with UI to manually annotate certain fields in the documents. On top of that, users should be able to manually add another fields to the form and annotate it as well.
+Your goal is to create the Annotation tool itself. The tool should allow users to upload images or PDF files of invoices and receipts, and provide them with a UI to manually annotate certain fields in the documents in a form of a group of simple input fields. On top of that, users should be able to manually add another fields to the form and annotate it as well.
 
 We are supporting following file types:
 - Images: `.jpg`, `.jpeg`, `.png`
