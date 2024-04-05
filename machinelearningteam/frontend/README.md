@@ -40,16 +40,3 @@ You can find files to test the tool in the `examples` folder.
 
 ## Sources
 * [What we do in Visma Machine Learning?](https://vml.visma.ai/)
-
-## Inspiration
-
-Here is an example of how the tool could look like. You can use it as an inspiration, but feel free to come up with your own design.
-
-<div style="text-align:center">
-  <img src="./inspiration_1.png" width="1000">
-</div>
-
-
-<div style="text-align:center">
-  <img src="./inspiration_2.png" width="1000">
-</div>
