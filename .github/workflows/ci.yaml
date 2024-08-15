@@ -32,7 +32,7 @@ jobs:
           pip install -r ./sre/download_service/requirements.txt
 
       - name: Unit tests
-        run: pytest --cov --cov-report term-missing
+        run: cd sre; pytest --cov --cov-report term-missing
 
   build:
     needs: test
