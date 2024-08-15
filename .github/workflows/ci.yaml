@@ -15,12 +15,6 @@ jobs:
       - name: Unit test
         run: echo "Here comes the unit tests..."
 
-  build:
-    needs: test
-    name: Build and publish stage
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
@@ -30,12 +24,19 @@ jobs:
           python-version: '3.11'
 
       - name: Debug
-        run: echo $PWD
+        run: echo $PWD; ls -l 
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r ./sre/download_service/requirements.txt
+
+  build:
+    needs: test
+    name: Build and publish stage
+    runs-on: ubuntu-latest
+
+    steps:
       
       - name: Checkout Repository
         run: cd ./sre/download_service/; pytest --cov --cov-report term-missing
