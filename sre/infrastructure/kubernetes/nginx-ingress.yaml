@@ -14,7 +14,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: flask-service
+            name: download-app
             port:
               number: 80
   - http:

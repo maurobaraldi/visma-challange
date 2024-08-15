@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask-deployment
+  name: download-deploy
   namespace: visma
 spec:
   selector:
     matchLabels:
-      app: flask
+      app: download-app
   replicas: 1
   template:
     metadata:
       labels:
-        app: flask
+        app: download-app
     spec:
       containers:
-      - name: flask
-        image: digitalocean/flask-helloworld
+      - name: download-app
+        image: maurobaraldi/download-service
         ports:
           - containerPort: 80
         resources:
@@ -29,10 +29,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: flask-service
+  name: download-service
   namespace: visma
   labels:
-    app: flask-helloworld
+    app: download-app
 spec:
   type: LoadBalancer
   ports:
@@ -41,4 +41,4 @@ spec:
     protocol: TCP
     name: http
   selector:
-    app: flask
+    app: download-app

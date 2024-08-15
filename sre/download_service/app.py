@@ -13,6 +13,8 @@ from flask import (
 )
 
 DEBUG = os.environ.get("DEBUG")
+DUMMY_APP_HOST = os.environ.get("DUMMY_APP_SERVICE_HOST")
+DUMMY_APP_PORT = os.environ.get("DUMMY_APP_SERVICE_PORT")
 
 app = Flask(__name__)
 
@@ -58,7 +60,7 @@ Health check endpoint.
 def download(number):
     '''Download random file endpoint.'''
 
-    fp, request = urlretrieve("http://localhost:3000")
+    fp, request = urlretrieve(f"http://{DUMMY_APP_HOST}:{DUMMY_APP_PORT}")
 
     #app.logger.info(f'{{"function": "ackermann", "values": [{number}, {number_n}], "elapsed": {time.elapsed}}}')
 
