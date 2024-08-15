@@ -22,7 +22,7 @@ shell:
 debug: up
 	docker attach $(docker ps --filter "name=download-service" -q)
 
-test:
+test: up
 	docker compose exec download-service pytest
 
 coverage:

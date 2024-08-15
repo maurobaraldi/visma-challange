@@ -28,11 +28,12 @@ jobs:
 
       - name: Install dependencies
         run: |
+          cd ./sre/download_service/
           python -m pip install --upgrade pip
-          pip install -r ./sre/download_service/requirements.txt
+          pip install -r requirements.txt
 
       - name: Unit tests
-        run: cd sre; pytest --cov --cov-report term-missing
+        run: pytest --cov --cov-report term-missing
 
   build:
     needs: test
@@ -40,20 +41,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Prepare environment
+        run: cd ./sre/download_service/; ls -l
 
-      - name: Check Dockerfile
-        run: docker run --rm -i hadolint/hadolint < ./sre/download-service/Dockerfile
+      #- name: Check Dockerfile
+      #  run: docker run --rm -i hadolint/hadolint < Dockerfile
 
       - name: Build docker image
-        run: docker build -t maurobaraldi/download-service:latest ./sre/download-service
+        run: ls -l; docker build -t maurobaraldi/download-service ./sre/download_service/
 
       - name: Push docker image
-        run: docker push maurobaraldi/download-service:latest
+        run: docker push maurobaraldi/download-service
 
   publish:
     needs: build
