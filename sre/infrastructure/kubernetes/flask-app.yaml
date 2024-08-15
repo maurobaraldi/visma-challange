@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-deployment
+  namespace: visma
+spec:
+  selector:
+    matchLabels:
+      app: flask
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: flask
+    spec:
+      containers:
+      - name: flask
+        image: digitalocean/flask-helloworld
+        ports:
+          - containerPort: 80
+        resources:
+          requests:
+            cpu: 500m
+            memory: 500M
+          limits:
+            cpu: 1
+            memory: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-service
+  namespace: visma
+  labels:
+    app: flask-helloworld
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 81
+    targetPort: 5000
+    protocol: TCP
+    name: http
+  selector:
+    app: flask

@@ -1,4 +1,4 @@
-DOCKER_IMAGE := dummy-pdf-or-png
+DOCKER_IMAGE := maurobaraldi/dummy-pdf-or-png
 
 build:
 	docker build -t ${DOCKER_IMAGE} .

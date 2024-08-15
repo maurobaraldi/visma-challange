@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dummy-app-deployment
+  namespace: visma
+spec:
+  selector:
+    matchLabels:
+      app: dummy-app
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: dummy-app
+    spec:
+      containers:
+      - name: dummy-pdf-or-png
+        image: maurobaraldi/dummy-pdf-or-png:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            cpu: 500m
+            memory: 500M
+          limits:
+            cpu: 1
+            memory: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dummy-app
+  namespace: visma
+  labels:
+    app: flask-helloworld
+spec:
+  type: LoadBalancer
+  selector:
+    app: dummy-app
+  ports:
+  - protocol: "TCP"
+    port: 80
+    targetPort: 3000

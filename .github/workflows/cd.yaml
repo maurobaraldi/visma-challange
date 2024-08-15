@@ -1,0 +1,31 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  staging:
+    name: Staging deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to staging
+        run: echo "Deploy to staging environment."
+
+      - name: Post-deploy check.
+        run: echo "Staging post-deploy validations."
+  
+  production:
+    needs: staging
+    name: Production deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to production
+        run: echo "Deploy to production environment."
+
+      - name: Post-deploy check.
+        run: echo "Production post-deploy validations..."
