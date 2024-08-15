@@ -2,7 +2,6 @@
 
 import os
 
-from logging.config import dictConfig
 from urllib.request import urlretrieve
 
 from flask import (
@@ -14,22 +13,6 @@ from flask import (
 )
 
 DEBUG = os.environ.get("DEBUG")
-
-dictConfig({
-    'version': 1,
-    'formatters': {'default': {
-        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
-    }},
-    'handlers': {'wsgi': {
-        'class': 'logging.FileHandler',
-        'filename': '/var/app/app.log',
-        'formatter': 'default'
-    }},
-    'root': {
-        'level': 'INFO',
-        'handlers': ['wsgi']
-    }
-})
 
 app = Flask(__name__)
 
